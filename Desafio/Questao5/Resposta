@@ -1,0 +1,11 @@
+A solução apresentada possui problemas em cenários de concorrência e transações:
+
+Concorrência:
+Se dois débitos forem realizados ao mesmo tempo na mesma conta, ambos podem passar pela verificação conta.podeDebitar(valor) antes de qualquer um atualizar o saldo. Isso pode permitir que a conta fique com saldo negativo, pois ambos os débitos "enxergam" o saldo antigo antes de qualquer atualização.
+
+Transações:
+Não há controle transacional explícito. Se ocorrer uma falha entre o débito e a atualização da conta, o sistema pode ficar em estado inconsistente (por exemplo, o valor é debitado do objeto em memória, mas não é persistido no banco).
+
+Como melhorar:
+
+A melhor alternativa seria implementar o controle de concorrência e transações diretamente no banco de dados. Assim, você garante integridade mesmo com múltiplas instâncias da aplicação ou acessos concorrentes.
