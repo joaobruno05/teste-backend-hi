@@ -1,0 +1,31 @@
+Você deve capturar uma exceção com try e catch quando espera que um erro possa acontecer em um trecho de código e deseja tratar esse erro de forma controlada, sem interromper a execução do programa.
+
+Motivos:
+- Para evitar que o programa pare inesperadamente.
+- Para registrar ou exibir mensagens de erro amigáveis ao usuário.
+- Para tratar erros esperados e garantir que o programa continue funcionando através de uma ação alternativa
+- Para facilitar a identificação e correção de problemas no sistema através da captura de logs de erro
+
+Exemplo:
+
+Tratativa em uma chamada de API (eu utilizava bastante na Blip):
+
+public class ApiExemplo
+{
+    public static async Task ChamarApiAsync()
+    {
+        try
+        {
+            using var httpClient = new HttpClient();
+            var resposta = await httpClient.GetAsync("https://api.exemplo.com/dados");
+            resposta.EnsureSuccessStatusCode();
+            var conteudo = await resposta.Content.ReadAsStringAsync();
+            Console.WriteLine("Resposta da API: " + conteudo);
+        }
+        catch (HttpRequestException ex)
+        {
+            // Aqui você pode registrar o erro em um arquivo de log
+            Console.WriteLine("Erro ao chamar a API: " + ex.Message);
+        }
+    }
+}

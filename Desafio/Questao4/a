@@ -1,0 +1,13 @@
+Sim, é uma boa prática.
+
+- Quando você quer sinalizar um erro específico da sua aplicação ou domínio, que não é bem representado pelas exceções padrão do .NET.
+- Quando deseja tratar esse erro de forma diferenciada em blocos catch.
+- Quando precisa adicionar informações extras à exceção (por exemplo, propriedades específicas).
+
+Exemplo:
+Se você tem uma regra de negócio chamada SaldoInsuficiente, pode criar:
+
+public class SaldoInsuficienteException : Exception
+{
+    public SaldoInsuficienteException(string mensagem) : base(mensagem){ }
+}
