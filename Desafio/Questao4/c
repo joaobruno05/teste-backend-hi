@@ -1,0 +1,25 @@
+Eu lançaria uma exceção quando ocorresse uma situação inesperada ou inválida que impedisse a continuação normal do programa.
+
+Exemplos:
+
+1 - Parâmetro inválido:
+Se um método recebe um valor nulo ou fora do esperado:
+
+if (nome == null)
+    throw new ArgumentNullException(nameof(nome));
+
+2 - Violação de regra de negócio:
+Se um saque for maior que o saldo disponível:
+
+if (valor > saldo)
+    throw new SaldoInsuficienteException("Saldo insuficiente para saque.");
+
+3 - Acesso a índice inválido em array ou lista:
+
+if (indice < 0 || indice >= lista.Count)
+    throw new IndexOutOfRangeException("Índice fora do intervalo da lista.");
+
+4 - Falha de autenticação:
+
+if (!usuarioAutenticado)
+    throw new UnauthorizedAccessException("Usuário não autenticado.");
